@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  background-color: #0f172a; /* Slate 900 */
-  color: #f8fafc; /* Slate 50 */
+  --bg-primary: #0d0b1e;
+  --bg-secondary: #151229;
+  --bg-card: rgba(23, 20, 50, 0.8);
+  --bg-card-hover: rgba(30, 26, 65, 0.9);
+  --border-color: rgba(139, 92, 246, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b8;
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-cyan: #22d3ee;
+  --accent-yellow: #fbbf24;
+  --gradient-start: #7c3aed;
+  --gradient-end: #ec4899;
 }
 
 body {
@@ -13,6 +24,75 @@ body {
     -apple-system,
     sans-serif;
   min-height: 100vh;
+  background: linear-gradient(135deg, #1a1040 0%, #0d0b1e 50%, #0f0a1f 100%);
+  color: var(--text-primary);
+}
+
+/* Gradient header bar */
+.gradient-bar {
+  background: linear-gradient(90deg, #7c3aed 0%, #ec4899 50%, #f97316 100%);
+  height: 3px;
+}
+
+/* Glassy card effect */
+.glass-card {
+  background: rgba(23, 20, 50, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 16px;
+}
+
+.glass-card:hover {
+  background: rgba(30, 26, 65, 0.8);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Sidebar styling */
+.sidebar {
+  background: linear-gradient(180deg, #151229 0%, #0d0b1e 100%);
+  border-right: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+/* Card glow effects */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+}
+
+.glow-pink {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.15);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Stats card gradient backgrounds */
+.stat-card-purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.stat-card-cyan {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(34, 211, 238, 0.05) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.stat-card-pink {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(236, 72, 153, 0.05) 100%);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.stat-card-yellow {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0.05) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
 /* Custom animations */
@@ -27,8 +107,21 @@ body {
   }
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  }
+}
+
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 /* Scrollbar styling */
@@ -38,15 +131,58 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: rgba(23, 20, 50, 0.5);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: rgba(139, 92, 246, 0.4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: rgba(139, 92, 246, 0.6);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+}
+
+/* Input styling */
+input, select {
+  background: rgba(23, 20, 50, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: rgba(139, 92, 246, 0.5) !important;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
 }

@@ -227,11 +227,23 @@ class TicketGenerator:
         checkout_failures = random.randint(*template['checkout_failures_range'])
         affected_customers = random.randint(*template['affected_customers_range'])
         
+        # Map error_type to user-friendly category
+        category_map = {
+            'webhook_timeout': 'Webhook Issues',
+            'image_404': 'Image/CDN Issues',
+            'auth_failure': 'Authentication',
+            'shipping_calculation': 'Shipping',
+            'cart_persistence': 'Cart/Session',
+            'inventory_sync': 'Inventory',
+            'payment_gateway': 'Payment'
+        }
+        
         return {
             'ticket_id': ticket_id,
             'merchant_id': merchant_id,
             'timestamp': timestamp.isoformat() + 'Z',
             'issue': random.choice(template['issue_templates']),
+            'category': category_map.get(error_type, 'General'),
             'merchant_message': random.choice(template['merchant_messages']),
             'migration_stage': random.choice(self.migration_stages),
             'error_log': template['error_log'],

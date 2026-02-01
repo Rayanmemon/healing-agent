@@ -33,8 +33,8 @@ const AgentActionPanel = ({ ticket, analysis, decision, onActionComplete, onReje
   // No ticket selected at all
   if (!ticket) {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-slate-500 p-8 border border-dashed border-slate-800 rounded-xl">
-        <Brain size={48} className="mb-4 opacity-50" />
+      <div className="h-full flex flex-col items-center justify-center text-slate-400 p-8 glass-card">
+        <Brain size={48} className="mb-4 text-violet-400 opacity-50" />
         <p>Select a ticket to view Agent Analysis</p>
       </div>
     );
@@ -43,30 +43,30 @@ const AgentActionPanel = ({ ticket, analysis, decision, onActionComplete, onReje
   // Ticket selected but analysis not yet run
   if (!analysis) {
     return (
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 h-full flex flex-col">
+      <div className="glass-card p-6 h-full flex flex-col">
         <div className="flex items-center space-x-3 mb-6">
-          <div className="bg-indigo-500/20 p-2 rounded-lg">
-            <Brain className="text-indigo-400" size={24} />
+          <div className="bg-violet-500/20 p-3 rounded-xl">
+            <Brain className="text-violet-400" size={24} />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-100">Agent Analysis</h2>
+            <h2 className="text-xl font-bold text-white">Agent Analysis</h2>
             <p className="text-sm text-slate-400">Powered by Llama 3.3 (Groq)</p>
           </div>
         </div>
 
         {/* Ticket Info Preview */}
-        <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
-          <h3 className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-2">Selected Ticket</h3>
-          <p className="text-indigo-400 font-mono text-lg mb-1">#{ticket.ticket_id}</p>
-          <p className="text-slate-300 text-sm mb-2">{ticket.issue}</p>
+        <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl p-4 mb-6">
+          <h3 className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Selected Ticket</h3>
+          <p className="text-violet-400 font-mono text-lg mb-1">#{ticket.ticket_id}</p>
+          <p className="text-slate-200 text-sm mb-2">{ticket.issue}</p>
           <p className="text-slate-500 text-xs">{ticket.merchant_message}</p>
         </div>
 
         {/* Pending Analysis State */}
-        <div className="flex-1 flex flex-col items-center justify-center text-center border border-dashed border-slate-700 rounded-lg p-8">
-          <Play size={32} className="text-indigo-400 mb-4 opacity-70" />
-          <p className="text-slate-400 mb-2">Analysis not yet run</p>
-          <p className="text-slate-600 text-sm">Click <strong className="text-indigo-400">"Run Agent"</strong> to analyze this ticket</p>
+        <div className="flex-1 flex flex-col items-center justify-center text-center border border-dashed border-violet-500/20 rounded-xl p-8">
+          <Play size={32} className="text-violet-400 mb-4 opacity-70" />
+          <p className="text-slate-300 mb-2">Analysis not yet run</p>
+          <p className="text-slate-500 text-sm">Click <strong className="text-violet-400">"Run Agent"</strong> to analyze this ticket</p>
         </div>
       </div>
     );
@@ -83,22 +83,22 @@ const AgentActionPanel = ({ ticket, analysis, decision, onActionComplete, onReje
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 h-full flex flex-col overflow-auto">
+    <div className="glass-card p-6 h-full flex flex-col overflow-auto">
       <div className="flex items-center space-x-3 mb-6">
-        <div className="bg-indigo-500/20 p-2 rounded-lg">
-          <Brain className="text-indigo-400" size={24} />
+        <div className="bg-violet-500/20 p-3 rounded-xl">
+          <Brain className="text-violet-400" size={24} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-slate-100">Agent Analysis</h2>
+          <h2 className="text-xl font-bold text-white">Agent Analysis</h2>
           <p className="text-sm text-slate-400">Powered by Llama 3.3 (Groq)</p>
         </div>
       </div>
 
       {/* Ticket Information Section */}
-      <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
+      <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl p-4 mb-6">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-xs uppercase tracking-wider text-slate-500 font-semibold">Ticket Information</h3>
-          <span className={`text-xs px-2 py-1 rounded border ${severityColors[ticket.severity] || severityColors.medium}`}>
+          <h3 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Ticket Information</h3>
+          <span className={`text-xs px-2 py-1 rounded-lg border ${severityColors[ticket.severity] || severityColors.medium}`}>
             {ticket.severity?.toUpperCase()}
           </span>
         </div>
@@ -176,7 +176,9 @@ const AgentActionPanel = ({ ticket, analysis, decision, onActionComplete, onReje
 
             <div className="flex items-center space-x-4 text-xs text-slate-500 mb-4">
               <span className="flex items-center border border-slate-700 px-2 py-1 rounded">
-                Risk Level: <span className={`ml-1 font-bold ${decision.risk_level >= 7 ? 'text-rose-400' : 'text-emerald-400'}`}>{decision.risk_level}/10</span>
+                Risk Level: <span className={`ml-1 font-bold ${decision.risk_level >= 7 ? 'text-rose-400' : decision.risk_level >= 4 ? 'text-amber-400' : 'text-emerald-400'}`}>
+                  {decision.risk_level >= 8 ? 'Critical' : decision.risk_level >= 6 ? 'High' : decision.risk_level >= 4 ? 'Medium' : 'Low'}
+                </span>
               </span>
               <span className="flex items-center border border-slate-700 px-2 py-1 rounded">
                 Merchants: <span className="ml-1 text-slate-300">{analysis.affected_merchants}</span>

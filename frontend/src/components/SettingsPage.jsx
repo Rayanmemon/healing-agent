@@ -66,18 +66,18 @@ const SettingsPage = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center space-x-3 mb-8">
-        <div className="bg-slate-800 p-3 rounded-lg">
-          <SettingsIcon className="text-slate-400" size={24} />
+        <div className="bg-violet-500/20 p-3 rounded-xl">
+          <SettingsIcon className="text-violet-400" size={24} />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Settings</h1>
+          <h1 className="text-2xl font-bold text-white">Settings</h1>
           <p className="text-sm text-slate-400">Configure agent behavior and preferences</p>
         </div>
       </div>
 
       <div className="space-y-6">
         {/* API Configuration */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+        <div className="glass-card p-6">
           <div className="flex items-center space-x-2 mb-4">
             <Server size={18} className="text-indigo-400" />
             <h2 className="text-lg font-semibold text-slate-100">API Configuration</h2>
@@ -107,10 +107,10 @@ const SettingsPage = () => {
         </div>
 
         {/* AI Configuration */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+        <div className="glass-card p-6">
           <div className="flex items-center space-x-2 mb-4">
-            <Brain size={18} className="text-emerald-400" />
-            <h2 className="text-lg font-semibold text-slate-100">AI Configuration</h2>
+            <Brain size={18} className="text-pink-400" />
+            <h2 className="text-lg font-semibold text-white">AI Configuration</h2>
           </div>
           
           <div className="space-y-4">
@@ -119,7 +119,7 @@ const SettingsPage = () => {
               <select
                 value={settings.llmModel}
                 onChange={(e) => handleChange('llmModel', e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full rounded-xl px-4 py-2 text-slate-200 focus:outline-none"
               >
                 <option value="llama-3.3-70b-versatile">Llama 3.3 70B (Groq)</option>
                 <option value="llama-3.1-8b-instant">Llama 3.1 8B Instant</option>
@@ -129,7 +129,7 @@ const SettingsPage = () => {
             
             <div>
               <label className="block text-sm text-slate-400 mb-2">
-                Auto-Approve Threshold: <span className="text-indigo-400 font-mono">{settings.autoApproveThreshold}%</span>
+                Auto-Approve Threshold: <span className="text-violet-400 font-mono">{settings.autoApproveThreshold}%</span>
               </label>
               <input
                 type="range"
@@ -137,7 +137,7 @@ const SettingsPage = () => {
                 max="100"
                 value={settings.autoApproveThreshold}
                 onChange={(e) => handleChange('autoApproveThreshold', parseInt(e.target.value))}
-                className="w-full accent-indigo-500"
+                className="w-full accent-violet-500"
               />
               <p className="text-xs text-slate-500 mt-1">
                 Actions with confidence above this threshold may be auto-approved
@@ -147,10 +147,10 @@ const SettingsPage = () => {
         </div>
 
         {/* HITL Configuration */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+        <div className="glass-card p-6">
           <div className="flex items-center space-x-2 mb-4">
             <Shield size={18} className="text-amber-400" />
-            <h2 className="text-lg font-semibold text-slate-100">Human-in-the-Loop</h2>
+            <h2 className="text-lg font-semibold text-white">Human-in-the-Loop</h2>
           </div>
           
           <div className="space-y-4">
@@ -174,10 +174,10 @@ const SettingsPage = () => {
         </div>
 
         {/* Ticket Generation */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+        <div className="glass-card p-6">
           <div className="flex items-center space-x-2 mb-4">
             <Ticket size={18} className="text-cyan-400" />
-            <h2 className="text-lg font-semibold text-slate-100">Ticket Generation</h2>
+            <h2 className="text-lg font-semibold text-white">Ticket Generation</h2>
           </div>
           
           <div className="space-y-4">
@@ -214,21 +214,21 @@ const SettingsPage = () => {
         </div>
 
         {/* Notifications */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+        <div className="glass-card p-6">
           <div className="flex items-center space-x-2 mb-4">
             <Bell size={18} className="text-rose-400" />
-            <h2 className="text-lg font-semibold text-slate-100">Notifications</h2>
+            <h2 className="text-lg font-semibold text-white">Notifications</h2>
           </div>
           
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-slate-300">Enable Toast Notifications</p>
+              <p className="text-slate-200">Enable Toast Notifications</p>
               <p className="text-xs text-slate-500">Show alerts for agent actions and errors</p>
             </div>
             <button
               onClick={() => handleChange('enableNotifications', !settings.enableNotifications)}
               className={`w-12 h-6 rounded-full transition-colors ${
-                settings.enableNotifications ? 'bg-indigo-600' : 'bg-slate-700'
+                settings.enableNotifications ? 'bg-violet-600' : 'bg-slate-700'
               }`}
             >
               <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform ${
@@ -243,7 +243,7 @@ const SettingsPage = () => {
           <button
             onClick={handleSave}
             disabled={isSaving}
-            className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-lg font-medium flex items-center justify-center transition-colors disabled:opacity-50"
+            className="flex-1 btn-primary text-white py-3 rounded-xl font-medium flex items-center justify-center disabled:opacity-50"
           >
             {isSaving ? (
               <><Spinner size="sm" className="mr-2" /> Saving...</>
@@ -254,7 +254,7 @@ const SettingsPage = () => {
           
           <button
             onClick={handleReset}
-            className="px-6 bg-slate-800 hover:bg-slate-700 text-slate-200 py-3 rounded-lg font-medium flex items-center transition-colors"
+            className="px-6 glass-card hover:bg-violet-500/20 text-slate-200 py-3 rounded-xl font-medium flex items-center transition-all"
           >
             <RotateCcw size={18} className="mr-2" /> Reset
           </button>

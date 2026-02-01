@@ -945,5 +945,820 @@
         "recommended_priority": "high"
       }
     }
+  },
+  {
+    "status": "executed",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81932",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 3 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 75,
+      "estimated_impact": "3 merchants, ~0 failed checkouts",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates an 'Invalid API credentials format - expecting Bearer token' error, which suggests that the migration process may have altered or not properly configured the API credentials. This issue is specific to the merchant's integration with their POS system, which was working before the migration. The fact that the error is related to authentication and API credentials points towards a migration issue rather than a platform bug or documentation gap.",
+        "is_pattern": true,
+        "pattern_details": "There are 5 tickets with '401 Unauthorized' errors, which suggests a pattern of authentication issues post-migration. This pattern affects at least 3 merchants, given that there are 3 tickets in the 'post-migration-day-3' stage with similar issues.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant's POS system integration was correctly set up before the migration",
+          "The migration process did not introduce any new requirements for API credentials"
+        ],
+        "affected_merchants": 3,
+        "recommended_priority": "high"
+      }
+    },
+    "action_details": {
+      "type": "engineering_escalation",
+      "jira_ticket": "PLATFORM-932",
+      "priority": "Critical",
+      "title": "Pattern detected: There are 5 tickets with '401 Unauthorized' errors, which suggests a pattern of authentication issues post-migration. This pattern affects at least 3 merchants, given that there are 3 tickets in the 'post-migration-day-3' stage with similar issues.",
+      "assigned_team": "Platform Engineering",
+      "impact": "3 merchants, ~0 failed checkouts",
+      "execution_time": "0.8 seconds"
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81934",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 80,
+      "estimated_impact": "5 merchants, ~5 failed checkouts",
+      "analysis": {
+        "root_cause": "documentation_gap",
+        "root_cause_explanation": "The merchant is experiencing 401 errors due to an invalid API credentials format, specifically expecting a Bearer token, which suggests that the migration guide did not clearly communicate the new authentication format. The merchant's message also mentions that the migration guide was unclear about the new auth format, further supporting this conclusion. This indicates a documentation gap, where the provided instructions were insufficient for the merchant to successfully update their API credentials.",
+        "is_pattern": true,
+        "pattern_details": "A pattern of 401 Unauthorized errors is detected, with 5 out of 8 total tickets experiencing this issue, suggesting that multiple merchants are struggling with the new authentication format. This pattern is likely related to the migration process and the documentation provided to merchants.",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant followed the migration guide as provided",
+          "The new authentication format requires a Bearer token"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81933",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 75,
+      "estimated_impact": "5 merchants, ~20 failed checkouts",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error message '401 Unauthorized: Invalid API credentials format - expecting Bearer token' suggests that there is an issue with the API credentials or authentication process after the migration. This, combined with the fact that the merchant mentions it used to work fine before migration, points towards a migration-related issue. The error is likely due to incorrect or missing configuration of API credentials during the migration process.",
+        "is_pattern": true,
+        "pattern_details": "There is a pattern of 401 Unauthorized errors, with 5 out of 8 total tickets in the system reporting this issue. This suggests that multiple merchants are experiencing similar problems, indicating a potential issue with the migration process or documentation.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant has correctly followed the migration instructions",
+          "The platform's API documentation is accurate and up-to-date"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81938",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 75,
+      "estimated_impact": "5 merchants, ~15 failed checkouts",
+      "analysis": {
+        "root_cause": "documentation_gap",
+        "root_cause_explanation": "The merchant message explicitly states that the migration guide was not clear about the new auth format, which suggests that the issue lies in the documentation provided for the migration process. The error log also indicates an issue with the API credentials format, which could be due to a lack of clear instructions on how to update these credentials. This points towards a documentation gap as the root cause of the problem.",
+        "is_pattern": true,
+        "pattern_details": "A pattern is detected with multiple merchants experiencing similar issues, as indicated by the high frequency of '401 Unauthorized' errors across different tickets. This suggests that the documentation gap is affecting multiple merchants, with at least 5 tickets reporting the '401 Unauthorized' error.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant followed the migration guide as provided",
+          "The error log accurately represents the issue with the API credentials"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81931",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 75,
+      "estimated_impact": "5 merchants, ~20 failed checkouts",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error message '401 Unauthorized: Invalid API credentials format - expecting Bearer token' suggests that there is an issue with the API credentials format after the migration. This could be due to a data migration or process problem, where the API credentials were not properly updated or formatted. The fact that it used to work fine before migration also points towards a migration-related issue.",
+        "is_pattern": true,
+        "pattern_details": "There are 5 tickets with '401 Unauthorized' errors, which is the most frequent error type in the system. This suggests that there is a pattern of API credential issues after migration, affecting at least 5 merchants.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant has not updated their API credentials or webhook URLs/endpoints after migration",
+          "The platform's migration process did not properly handle API credential updates"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide",
+    "action_details": {
+      "type": "automated_email",
+      "to": "merchant_TKT-81937@example.com",
+      "subject": "Action Required: Update Webhook Configuration for Headless Migration",
+      "body_preview": "We detected your webhook endpoint is using the old URL format. Please update to: https://api.yourstore.com/webhooks/v2/...",
+      "kb_article": "https://docs.platform.com/migration/webhooks",
+      "execution_time": "0.3 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-81937",
+      "action": "send_webhook_configuration_guide",
+      "risk_level": "low",
+      "requires_approval": false,
+      "reasoning": "High confidence merchant configuration error. Automated guide can resolve.",
+      "confidence": 85,
+      "estimated_impact": "1 merchant, 17 failed checkouts, 11 customers affected",
+      "analysis": {
+        "root_cause": "webhook_configuration",
+        "root_cause_explanation": "The error log indicates that the webhook inventory.updated is not triggering and legacy polling is disabled, suggesting that the merchant may not have updated their webhook URLs or endpoints correctly after migration. This is a common issue during the post-migration stage, and the error message directly points to a configuration problem. The fact that stock levels are showing as 0 for products with hundreds of items in stock further supports this conclusion.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this is an isolated incident with only one merchant affected.",
+        "confidence": 85,
+        "assumptions": [
+          "The merchant has not updated their webhook configuration",
+          "The platform's webhook system is functioning correctly"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-81935",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 61 failed checkouts, 27 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates a SessionError with a message stating that the cart session cookie format is incompatible with the headless architecture, which suggests a problem with the data migration or process. This issue is occurring post-migration, which further supports the conclusion that it is a migration issue. The fact that only one type of error is present in the error log also points towards a specific migration-related problem.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected as this issue is isolated to a single merchant and error type",
+        "confidence": 80,
+        "assumptions": [
+          "The error log message accurately reflects the root cause of the issue",
+          "The migration process was not fully tested for compatibility with the headless architecture"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-81936",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 12 failed checkouts, 0 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates a path structure change in the headless API, which suggests that the issue is related to the migration process. The fact that everything was fine before migration also points towards a migration-related problem. The 404 Not Found error for product images is likely due to incorrect mapping of image URLs during the migration process.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this is the only ticket with a 404 Not Found error related to image loading.",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant followed the standard migration procedure",
+          "The platform's headless API is correctly configured"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81932",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 75,
+      "estimated_impact": "5 merchants, ~0 failed checkouts",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates an 'Invalid API credentials format - expecting Bearer token' error, which suggests that the migration process may have altered or not properly configured the API credentials. This, combined with the merchant's message about their POS system integration being broken, points towards a data migration or process problem. The fact that this issue arose post-migration also supports this conclusion.",
+        "is_pattern": true,
+        "pattern_details": "A pattern of 401 Unauthorized errors is detected, with 5 out of 8 total tickets in the system reporting this issue. This suggests that multiple merchants are experiencing authentication problems, possibly due to a common migration-related issue.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant's POS system integration relies on the same API credentials that are now causing the 401 Unauthorized error",
+          "The migration process did not properly handle the API credential configuration"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81934",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 80,
+      "estimated_impact": "5 merchants, ~5 failed checkouts",
+      "analysis": {
+        "root_cause": "documentation_gap",
+        "root_cause_explanation": "The merchant message explicitly states that the migration guide wasn't clear about the new auth format, which suggests that the issue lies in the documentation provided for the migration process. The error log also indicates an issue with the API credentials format, which is consistent with a misunderstanding of the new auth format. This implies that the merchant was not adequately informed about the changes in the authentication process.",
+        "is_pattern": true,
+        "pattern_details": "A pattern of authentication issues is detected, with 5 out of 8 total tickets in the system reporting 401 Unauthorized errors. This suggests that multiple merchants are experiencing similar difficulties with the new auth format, indicating a potential documentation gap or issue with the migration instructions.",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant followed the migration guide as provided",
+          "The new auth format is correctly implemented on the platform side"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81933",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 75,
+      "estimated_impact": "5 merchants, ~20 failed checkouts",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates an 'Invalid API credentials format - expecting Bearer token' which suggests that the merchant's API credentials may not have been properly updated or migrated to the new platform. This issue started after migration, indicating a possible problem with the migration process. The fact that it used to work fine before migration further supports this conclusion.",
+        "is_pattern": true,
+        "pattern_details": "A pattern of 401 Unauthorized errors is detected, with 5 out of 8 total tickets in the system reporting this issue. This suggests that multiple merchants are experiencing similar problems, possibly due to a common issue with the migration process.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant correctly followed the pre-migration instructions",
+          "The migration process was supposed to handle API credential updates automatically"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81938",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "PATTERN DETECTED: 5 merchants experiencing same issue. Platform-wide problem likely.",
+      "confidence": 75,
+      "estimated_impact": "5 merchants, ~15 failed checkouts",
+      "analysis": {
+        "root_cause": "documentation_gap",
+        "root_cause_explanation": "The merchant message explicitly states that the migration guide was not clear about the new auth format, which suggests that the issue lies in the documentation provided for the migration process. The error log also indicates an issue with the API credentials format, which could be due to a lack of clear instructions on how to update these credentials. This implies that the merchant was not adequately informed about the changes required for the API credentials.",
+        "is_pattern": true,
+        "pattern_details": "A pattern of API credential issues is detected, with 5 out of 8 total tickets reporting 401 Unauthorized errors, indicating that multiple merchants are experiencing similar problems. This suggests a systemic issue with the migration documentation or process.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant followed the provided migration guide",
+          "The error log accurately represents the issue"
+        ],
+        "affected_merchants": 5,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "pending_approval",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-81931",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "Potential platform bug or critical issue requiring engineering investigation.",
+      "confidence": 75,
+      "estimated_impact": "2 merchants, ~8 failed checkouts",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates an 'Invalid API credentials format - expecting Bearer token' error, which suggests that the API credentials were not properly updated or migrated to the new platform. This issue is likely related to the migration process, as the merchant mentions that the API requests used to work fine before the migration. The fact that the error is occurring in the post-migration stage further supports this conclusion.",
+        "is_pattern": true,
+        "pattern_details": "A pattern of 401 Unauthorized errors is detected, with 5 out of 8 total tickets in the system reporting this error type. This suggests that multiple merchants are experiencing similar issues, with at least 2 merchants affected in the post-migration-week-2 stage.",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant has not updated their API credentials or webhook URLs",
+          "The migration process did not properly handle API credential updates"
+        ],
+        "affected_merchants": 2,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide",
+    "action_details": {
+      "type": "automated_email",
+      "to": "merchant_TKT-81937@example.com",
+      "subject": "Action Required: Update Webhook Configuration for Headless Migration",
+      "body_preview": "We detected your webhook endpoint is using the old URL format. Please update to: https://api.yourstore.com/webhooks/v2/...",
+      "kb_article": "https://docs.platform.com/migration/webhooks",
+      "execution_time": "0.3 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-81937",
+      "action": "send_webhook_configuration_guide",
+      "risk_level": "low",
+      "requires_approval": false,
+      "reasoning": "High confidence merchant configuration error. Automated guide can resolve.",
+      "confidence": 85,
+      "estimated_impact": "1 merchant, 17 failed checkouts, 11 customers affected",
+      "analysis": {
+        "root_cause": "webhook_configuration",
+        "root_cause_explanation": "The error log indicates that the 'webhook inventory.updated' is not triggering and legacy polling is disabled, suggesting that the merchant may not have updated their webhook URLs or endpoints correctly after migration. This is a common issue in post-migration stages, and the error message directly points to a webhook configuration problem. The fact that stock levels are showing as 0 for products with hundreds of items in stock further supports this conclusion.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this is the only ticket with an 'InventorySyncError' issue.",
+        "confidence": 85,
+        "assumptions": [
+          "The merchant has not updated their webhook URLs or endpoints",
+          "The platform's webhook configuration documentation is clear and accurate"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-81935",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 61 failed checkouts, 27 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log message 'SessionError: Cart session cookie format incompatible with headless architecture' suggests that the issue is related to the migration process, specifically with how session cookies are handled in the new headless architecture. This indicates a problem with the data migration or process, which is a common issue during platform migrations. The fact that this is a post-migration issue also supports this conclusion.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this is an isolated issue with only one merchant affected.",
+        "confidence": 80,
+        "assumptions": [
+          "The error log message is accurate and reflects the actual cause of the issue",
+          "The merchant has not made any changes to their webhook URLs or endpoints that could be contributing to the problem"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-81936",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 12 failed checkouts, 0 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates a path structure change in the headless API, which suggests that the issue is related to the migration process. The fact that everything was fine before migration also points to a migration-related issue. The 404 Not Found error for product images is likely due to the changed path structure not being properly updated or configured during the migration.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this is the only ticket with a 404 Not Found error related to image loading.",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant followed the standard migration procedure",
+          "The migration process was not customized or altered in any way"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide",
+    "action_details": {
+      "type": "automated_email",
+      "to": "merchant_TKT-18147@example.com",
+      "subject": "Action Required: Update Webhook Configuration for Headless Migration",
+      "body_preview": "We detected your webhook endpoint is using the old URL format. Please update to: https://api.yourstore.com/webhooks/v2/...",
+      "kb_article": "https://docs.platform.com/migration/webhooks",
+      "execution_time": "0.3 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18147",
+      "action": "send_webhook_configuration_guide",
+      "risk_level": "low",
+      "requires_approval": false,
+      "reasoning": "High confidence merchant configuration error. Automated guide can resolve.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 45 failed checkouts, 24 customers affected",
+      "analysis": {
+        "root_cause": "webhook_configuration",
+        "root_cause_explanation": "The error log indicates a WebhookTimeout error with the order.created webhook failing after 30 seconds due to an unreachable endpoint. This suggests that the merchant may not have updated their webhook URLs or endpoints correctly after migration. The fact that all transactions are failing since migration further supports this conclusion.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as the error type frequency shows only one instance of WebhookTimeout error.",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant followed the standard migration process",
+          "The platform's webhook configuration documentation is accurate and up-to-date"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18145",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 61 failed checkouts, 26 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates a SessionError due to an incompatible cart session cookie format with the headless architecture, which suggests a problem with the data migration or process. This issue is likely related to the migration stage, as indicated by the 'migration-in-progress' stage. The error message points to a specific technical issue that is likely caused by the migration process.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this issue appears to be isolated to a single merchant",
+        "confidence": 80,
+        "assumptions": [
+          "The error log message is accurate and directly related to the issue",
+          "The merchant has followed the migration instructions correctly"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18146",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 90,
+      "estimated_impact": "1 merchant, 11 failed checkouts, 3 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log message 'ShippingError: Legacy shipping rules not migrated to new format' directly indicates that the issue is related to the migration of shipping rules from the old platform to the new one. This suggests that there was a problem with the data migration or process, resulting in the shipping rules not being properly migrated. The merchant's message also mentions that the shipping rules from the old platform didn't migrate properly, further supporting this conclusion.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this issue appears to be isolated to a single merchant.",
+        "confidence": 90,
+        "assumptions": [
+          "The error log message is accurate and reflects the actual cause of the issue",
+          "The merchant's message is a genuine description of the problem"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "medium"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide",
+    "action_details": {
+      "type": "automated_email",
+      "to": "merchant_TKT-18148@example.com",
+      "subject": "Action Required: Update Webhook Configuration for Headless Migration",
+      "body_preview": "We detected your webhook endpoint is using the old URL format. Please update to: https://api.yourstore.com/webhooks/v2/...",
+      "kb_article": "https://docs.platform.com/migration/webhooks",
+      "execution_time": "0.3 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18148",
+      "action": "send_webhook_configuration_guide",
+      "risk_level": "low",
+      "requires_approval": false,
+      "reasoning": "High confidence merchant configuration error. Automated guide can resolve.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 13 failed checkouts, 18 customers affected",
+      "analysis": {
+        "root_cause": "webhook_configuration",
+        "root_cause_explanation": "The error log indicates that the 'webhook inventory.updated' is not triggering and legacy polling is disabled, suggesting that the merchant may not have updated their webhook URLs/endpoints correctly. This is a common issue during the pre-migration stage, where merchants are required to update their webhooks to ensure seamless integration with the new platform. The fact that stock levels are showing as 0 for products with hundreds of items in stock further supports this conclusion.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this issue appears to be isolated to a single merchant",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant has not updated their webhook URLs/endpoints",
+          "The legacy polling system is correctly disabled"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-18144",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "Potential platform bug or critical issue requiring engineering investigation.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 115 failed checkouts, 38 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates an SSL cert mismatch, which is a common issue during platform migrations. This suggests that the payment gateway integration was not properly configured or updated during the migration process. The fact that this issue occurred on post-migration-day-3 also supports the idea that it is a migration-related issue.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this is an isolated incident with a specific error message.",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant followed the standard migration procedure",
+          "The payment gateway configuration was not updated correctly during migration"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "critical"
+      }
+    },
+    "action_details": {
+      "type": "engineering_escalation",
+      "jira_ticket": "PLATFORM-144",
+      "priority": "Critical",
+      "title": "Pattern detected: No pattern detected, as this is an isolated incident with a specific error message.",
+      "assigned_team": "Platform Engineering",
+      "impact": "1 merchant, 115 failed checkouts, 38 customers affected",
+      "execution_time": "0.8 seconds"
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide",
+    "action_details": {
+      "type": "automated_email",
+      "to": "merchant_TKT-18147@example.com",
+      "subject": "Action Required: Update Webhook Configuration for Headless Migration",
+      "body_preview": "We detected your webhook endpoint is using the old URL format. Please update to: https://api.yourstore.com/webhooks/v2/...",
+      "kb_article": "https://docs.platform.com/migration/webhooks",
+      "execution_time": "0.3 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18147",
+      "action": "send_webhook_configuration_guide",
+      "risk_level": "low",
+      "requires_approval": false,
+      "reasoning": "High confidence merchant configuration error. Automated guide can resolve.",
+      "confidence": 75,
+      "estimated_impact": "1 merchant, 45 failed checkouts, 24 customers affected",
+      "analysis": {
+        "root_cause": "webhook_configuration",
+        "root_cause_explanation": "The error log indicates a WebhookTimeout error with the order.created webhook failing after 30 seconds due to an unreachable endpoint. This suggests that the merchant may not have updated their webhook URLs or endpoints correctly after migration. The fact that all transactions are failing since migration also points towards a configuration issue rather than a platform bug or data migration problem.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected as this issue seems isolated to this merchant",
+        "confidence": 75,
+        "assumptions": [
+          "The merchant has not updated their webhook URLs or endpoints",
+          "The platform's migration instructions were clear and sufficient"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18145",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 61 failed checkouts, 26 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates a 'SessionError: Cart session cookie format incompatible with headless architecture', which suggests that the issue is related to the migration process and the compatibility of the cart session cookie format with the new headless architecture. This is a data migration or process problem, which is a common issue during platform migrations. The fact that the merchant is in the 'migration-in-progress' stage also supports this conclusion.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this issue appears to be isolated to a single merchant",
+        "confidence": 80,
+        "assumptions": [
+          "The error log message is accurate and reflects the actual cause of the issue",
+          "The merchant has not made any changes to their webhook URLs/endpoints that could be causing the issue"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: assign_to_support_team",
+    "action_details": {
+      "type": "support_queue",
+      "queue": "Migration Support Tier 2",
+      "priority": "Normal",
+      "auto_response_sent": true,
+      "estimated_response": "2 hours",
+      "execution_time": "0.2 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18146",
+      "action": "assign_to_support_team",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "reasoning": "Standard support workflow - human agent will investigate.",
+      "confidence": 85,
+      "estimated_impact": "1 merchant, 11 failed checkouts, 3 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log message 'ShippingError: Legacy shipping rules not migrated to new format' directly indicates that the issue is related to the migration of shipping rules from the old platform to the new one. The merchant's message also mentions that the shipping rules didn't migrate properly, which further supports this conclusion. This suggests that there was a problem with the data migration or process during the migration stage.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this issue seems to be isolated to this merchant",
+        "confidence": 85,
+        "assumptions": [
+          "The error log message is accurate and reflects the actual cause of the issue",
+          "The merchant's message is a genuine description of the problem"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "medium"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide",
+    "action_details": {
+      "type": "automated_email",
+      "to": "merchant_TKT-18148@example.com",
+      "subject": "Action Required: Update Webhook Configuration for Headless Migration",
+      "body_preview": "We detected your webhook endpoint is using the old URL format. Please update to: https://api.yourstore.com/webhooks/v2/...",
+      "kb_article": "https://docs.platform.com/migration/webhooks",
+      "execution_time": "0.3 seconds"
+    },
+    "decision": {
+      "ticket_id": "TKT-18148",
+      "action": "send_webhook_configuration_guide",
+      "risk_level": "low",
+      "requires_approval": false,
+      "reasoning": "High confidence merchant configuration error. Automated guide can resolve.",
+      "confidence": 85,
+      "estimated_impact": "1 merchant, 13 failed checkouts, 18 customers affected",
+      "analysis": {
+        "root_cause": "webhook_configuration",
+        "root_cause_explanation": "The error log indicates that the 'webhook inventory.updated' is not triggering and legacy polling is disabled, suggesting that the merchant may not have updated their webhook URLs or endpoints correctly. This issue is likely due to a configuration problem on the merchant's side, as the error message directly points to a webhook-related issue. The fact that stock levels are completely wrong and show 0 for products that the merchant has hundreds of also supports this conclusion, as it suggests a synchronization issue that could be caused by incorrect webhook configuration.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as this issue appears to be isolated to a single merchant",
+        "confidence": 85,
+        "assumptions": [
+          "The merchant has not updated their webhook URLs or endpoints",
+          "The platform's code is functioning correctly and the issue is not due to a bug"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "high"
+      }
+    }
+  },
+  {
+    "status": "executed",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk",
+    "decision": {
+      "ticket_id": "TKT-18144",
+      "action": "escalate_to_engineering",
+      "risk_level": "high",
+      "requires_approval": true,
+      "reasoning": "Potential platform bug or critical issue requiring engineering investigation.",
+      "confidence": 80,
+      "estimated_impact": "1 merchant, 115 failed checkouts, 38 customers affected",
+      "analysis": {
+        "root_cause": "migration_issue",
+        "root_cause_explanation": "The error log indicates an SSL cert mismatch, which is a common issue during platform migration. This suggests that the payment gateway integration was not properly configured or updated during the migration process. The fact that this issue occurred on post-migration-day-3 further supports this conclusion, as it is a critical period for ensuring all integrations are working correctly.",
+        "is_pattern": false,
+        "pattern_details": "No pattern detected, as the error type frequency shows a single occurrence of PaymentGatewayError and the migration stage distribution indicates only one merchant is affected at this stage.",
+        "confidence": 80,
+        "assumptions": [
+          "The merchant followed the standard migration procedure",
+          "The payment gateway configuration was not manually altered after migration"
+        ],
+        "affected_merchants": 1,
+        "recommended_priority": "critical"
+      }
+    },
+    "action_details": {
+      "type": "engineering_escalation",
+      "jira_ticket": "PLATFORM-144",
+      "priority": "Critical",
+      "title": "Pattern detected: No pattern detected, as the error type frequency shows a single occurrence of PaymentGatewayError and the migration stage distribution indicates only one merchant is affected at this stage.",
+      "assigned_team": "Platform Engineering",
+      "impact": "1 merchant, 115 failed checkouts, 38 customers affected",
+      "execution_time": "0.8 seconds"
+    }
   }
 ]

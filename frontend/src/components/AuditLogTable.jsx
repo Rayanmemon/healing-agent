@@ -28,9 +28,9 @@ const AuditLogTable = () => {
   if (isLoading) return <div className="text-slate-500 text-sm">Loading audit history...</div>;
 
   return (
-    <div className="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden mt-6">
-      <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-slate-100">Action Audit Log</h2>
+    <div className="glass-card overflow-hidden mt-6">
+      <div className="px-6 py-4 border-b border-violet-500/10 flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-white">Action Audit Log</h2>
         {auditLog && auditLog.length > 0 && (
           <button
             onClick={handleClear}
@@ -44,7 +44,7 @@ const AuditLogTable = () => {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm text-slate-400">
-          <thead className="bg-slate-800/50 uppercase text-xs font-semibold text-slate-500">
+          <thead className="bg-violet-500/10 uppercase text-xs font-semibold text-slate-400">
             <tr>
               <th className="px-6 py-3">Time</th>
               <th className="px-6 py-3">Ticket</th>
@@ -53,24 +53,24 @@ const AuditLogTable = () => {
               <th className="px-6 py-3">Status</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-violet-500/10">
             {auditLog?.slice().reverse().map((log, idx) => (
-              <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
+              <tr key={idx} className="hover:bg-violet-500/10 transition-colors">
                 <td className="px-6 py-4 whitespace-nowrap font-mono text-xs">
                   {new Date(log.timestamp).toLocaleTimeString()}
                 </td>
-                <td className="px-6 py-4 text-indigo-400 font-medium">
+                <td className="px-6 py-4 text-violet-400 font-medium">
                   {log.ticket_id}
                 </td>
-                <td className="px-6 py-4 text-slate-300">
+                <td className="px-6 py-4 text-slate-200">
                   {log.action}
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center space-x-2">
                     {log.triggered_by === 'human' ? (
-                      <User size={14} className="text-amber-400" />
+                      <User size={14} className="text-pink-400" />
                     ) : (
-                      <Cpu size={14} className="text-indigo-400" />
+                      <Cpu size={14} className="text-violet-400" />
                     )}
                     <span className="capitalize">{log.triggered_by}</span>
                   </div>
