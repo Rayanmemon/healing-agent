@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, FileText, Settings, Activity, Zap } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Activity, Shield } from 'lucide-react';
 
 const SidebarItem = ({ icon: Icon, label, active, onClick }) => (
   <div 
@@ -31,13 +31,13 @@ const Layout = ({ children, currentPage, onNavigate }) => {
       <div className="w-64 sidebar flex flex-col p-4 pt-6">
         <div className="flex items-center space-x-3 px-2 mb-10">
           <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30">
-            <Zap className="text-white" size={22} />
+            <Shield className="text-white" size={22} />
           </div>
           <div>
             <span className="text-lg font-bold gradient-text">
-              HealingAgent
+              Aegis
             </span>
-            <p className="text-xs text-slate-500">AI-Powered Support</p>
+            <p className="text-xs text-slate-500">AI Support Agent</p>
           </div>
         </div>
 
