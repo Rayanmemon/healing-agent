@@ -1,62 +1,62 @@
 [
   {
-    "ticket_id": "T001",
-    "merchant_id": "M496",
-    "timestamp": "2026-01-31T23:51:22.535607Z",
-    "issue": "Inventory counts not syncing",
+    "ticket_id": "T002",
+    "merchant_id": "M967",
+    "timestamp": "2026-02-01T01:18:06.107077Z",
+    "issue": "Product availability wrong",
     "merchant_message": "Inventory webhooks not firing. Stock counts frozen at migration snapshot.",
-    "migration_stage": "post-migration-day-2",
+    "migration_stage": "post-migration-day-3",
     "error_log": "InventorySyncError: Webhook inventory.updated not triggering - legacy polling disabled",
     "severity": "critical",
-    "checkout_failures": 12,
-    "affected_customers": 12
-  },
-  {
-    "ticket_id": "T003",
-    "merchant_id": "M722",
-    "timestamp": "2026-01-31T23:34:22.536621Z",
-    "issue": "Shopping carts not persisting",
-    "merchant_message": "Lost sales because carts don't persist. Customers give up and shop elsewhere.",
-    "migration_stage": "migration-in-progress",
-    "error_log": "SessionError: Cart session cookie format incompatible with headless architecture",
-    "severity": "high",
-    "checkout_failures": 66,
-    "affected_customers": 24
-  },
-  {
-    "ticket_id": "T005",
-    "merchant_id": "M776",
-    "timestamp": "2026-01-31T23:12:22.536621Z",
-    "issue": "Wrong shipping prices at checkout",
-    "merchant_message": "International shipping rates completely wrong after migration. Losing international customers.",
-    "migration_stage": "post-migration-week-1",
-    "error_log": "ShippingError: Legacy shipping rules not migrated to new format",
-    "severity": "medium",
-    "checkout_failures": 7,
-    "affected_customers": 8
-  },
-  {
-    "ticket_id": "T002",
-    "merchant_id": "M324",
-    "timestamp": "2026-01-31T23:11:22.535607Z",
-    "issue": "Lost cart sessions",
-    "merchant_message": "Cart abandonment way up - items keep disappearing from carts during checkout.",
-    "migration_stage": "post-migration-week-2",
-    "error_log": "SessionError: Cart session cookie format incompatible with headless architecture",
-    "severity": "high",
-    "checkout_failures": 39,
-    "affected_customers": 33
+    "checkout_failures": 40,
+    "affected_customers": 9
   },
   {
     "ticket_id": "T004",
-    "merchant_id": "M425",
-    "timestamp": "2026-01-31T22:44:22.536621Z",
-    "issue": "Customers can't complete orders - webhook failure",
-    "merchant_message": "Orders failing at checkout. Webhook timeout error keeps appearing. Help urgently needed!",
-    "migration_stage": "post-migration-week-2",
-    "error_log": "WebhookTimeout: order.created webhook failed after 30s - endpoint unreachable",
+    "merchant_id": "M113",
+    "timestamp": "2026-02-01T00:58:06.107077Z",
+    "issue": "API authentication failing after migration",
+    "merchant_message": "API authentication completely broken. Our mobile app can't access any endpoints.",
+    "migration_stage": "post-migration-day-5",
+    "error_log": "401 Unauthorized: Invalid API credentials format - expecting Bearer token",
     "severity": "critical",
-    "checkout_failures": 67,
-    "affected_customers": 44
+    "checkout_failures": 4,
+    "affected_customers": 0
+  },
+  {
+    "ticket_id": "T005",
+    "merchant_id": "M280",
+    "timestamp": "2026-02-01T00:48:06.107077Z",
+    "issue": "Shipping rates not calculating correctly",
+    "merchant_message": "Shipping rules from old platform didn't migrate properly. Need to reconfigure everything?",
+    "migration_stage": "post-migration-day-5",
+    "error_log": "ShippingError: Legacy shipping rules not migrated to new format",
+    "severity": "medium",
+    "checkout_failures": 13,
+    "affected_customers": 7
+  },
+  {
+    "ticket_id": "T001",
+    "merchant_id": "M610",
+    "timestamp": "2026-02-01T00:28:06.107077Z",
+    "issue": "Inventory data mismatch",
+    "merchant_message": "Overselling products because inventory sync broken. Customers angry about cancellations.",
+    "migration_stage": "post-migration-day-5",
+    "error_log": "InventorySyncError: Webhook inventory.updated not triggering - legacy polling disabled",
+    "severity": "critical",
+    "checkout_failures": 26,
+    "affected_customers": 13
+  },
+  {
+    "ticket_id": "T003",
+    "merchant_id": "M436",
+    "timestamp": "2026-02-01T00:21:06.107077Z",
+    "issue": "Gateway timeout at checkout",
+    "merchant_message": "Payment gateway not responding. Customers can't complete transactions.",
+    "migration_stage": "pre-migration",
+    "error_log": "PaymentGatewayError: Connection timeout to payment processor - SSL cert mismatch",
+    "severity": "critical",
+    "checkout_failures": 79,
+    "affected_customers": 36
   }
 ]

@@ -3,19 +3,15 @@ import json
 import re
 from collections import Counter
 from dotenv import load_dotenv
-from google import genai
+from groq import Groq
 
 load_dotenv()
 
 class HealingAgent:
-    def __init__(self, demo_mode=False):
-        # Configure Gemini using new google.genai SDK
-        self.demo_mode = demo_mode  # Skip LLM calls when True
-        if not demo_mode:
-            self.client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
-        else:
-            self.client = None
-        self.model_name = 'gemini-2.0-flash'
+    def __init__(self):
+        # Configure Groq client
+        self.client = Groq(api_key=os.getenv('GROQ_API_KEY'))
+        self.model_name = 'llama-3.3-70b-versatile'  # Fast and capable
         self.tickets = []
         self.decisions = []
         
@@ -94,7 +90,12 @@ ANALYSIS REQUIRED:
 
 2. PATTERN DETECTION: Is this isolated or affecting multiple merchants?
 
-3. CONFIDENCE: Rate your confidence 0-100 based on evidence
+3. CONFIDENCE: Rate 0-100. Be conservative and calibrated:
+   - 85-100: Error message DIRECTLY states the cause with no ambiguity
+   - 70-84: Strong correlation and clear evidence, minimal assumptions
+   - 55-69: Educated guess based on patterns, some assumptions made
+   - 40-54: Multiple possible causes, moderate uncertainty
+   - Below 40: Highly uncertain, needs more information
 
 4. ASSUMPTIONS: What are you assuming to reach this conclusion?
 
@@ -104,104 +105,55 @@ Respond ONLY with valid JSON (no markdown, no code blocks):
     "root_cause_explanation": "2-3 sentence detailed explanation of why you chose this root cause",
     "is_pattern": true or false,
     "pattern_details": "if pattern detected, explain what the pattern is and how many merchants affected",
-    "confidence": 85,
+    "confidence": 75,
     "assumptions": ["assumption 1", "assumption 2"],
     "affected_merchants": 1,
     "recommended_priority": "low/medium/high/critical"
 }}"""
 
-        # In demo mode, skip LLM and use rule-based analysis
-        if self.demo_mode:
-            return self._fallback_analysis(ticket)
-        
-        # Retry logic with exponential backoff for rate limits
-        import time
-        max_retries = 3
-        retry_delay = 5  # Start with 5 seconds
-        
-        for attempt in range(max_retries + 1):
-            try:
-                response = self.client.models.generate_content(
-                    model=self.model_name,
-                    contents=prompt
-                )
-                response_text = response.text
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[
+                    {"role": "system", "content": "You are an expert AI support agent. Always respond with valid JSON only, no markdown."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.3,
+                max_tokens=1024
+            )
+            response_text = response.choices[0].message.content
+            
+            # Clean response - remove markdown code blocks if present
+            response_text = response_text.strip()
+            response_text = re.sub(r'^```json\s*', '', response_text)
+            response_text = re.sub(r'^```\s*', '', response_text)
+            response_text = re.sub(r'\s*```$', '', response_text)
+            
+            # Extract JSON
+            start = response_text.find('{')
+            end = response_text.rfind('}') + 1
+            
+            if start != -1 and end > start:
+                json_str = response_text[start:end]
+                analysis = json.loads(json_str)
+            else:
+                raise ValueError("No JSON found in response")
                 
-                # Clean response - remove markdown code blocks if present
-                response_text = response_text.strip()
-                response_text = re.sub(r'^```json\s*', '', response_text)
-                response_text = re.sub(r'^```\s*', '', response_text)
-                response_text = re.sub(r'\s*```$', '', response_text)
-                
-                # Extract JSON
-                start = response_text.find('{')
-                end = response_text.rfind('}') + 1
-                
-                if start != -1 and end > start:
-                    json_str = response_text[start:end]
-                    analysis = json.loads(json_str)
-                    return analysis
-                else:
-                    raise ValueError("No JSON found in response")
-                    
-            except Exception as e:
-                error_str = str(e)
-                
-                # Check if it's a rate limit error
-                if '429' in error_str or 'RESOURCE_EXHAUSTED' in error_str:
-                    if attempt < max_retries:
-                        print(f"Rate limited. Waiting {retry_delay}s before retry {attempt + 1}/{max_retries}...")
-                        time.sleep(retry_delay)
-                        retry_delay *= 2  # Exponential backoff
-                        continue
-                
-                print(f"Warning: Error for {ticket['ticket_id']}: {e}")
-                break
+        except Exception as e:
+            print(f"Warning: Error parsing Groq response for {ticket['ticket_id']}: {e}")
+            # Fallback analysis
+            analysis = {
+                "root_cause": "unknown",
+                "root_cause_explanation": f"Analysis failed: {str(e)}",
+                "is_pattern": False,
+                "pattern_details": "",
+                "confidence": 50,
+                "assumptions": ["Unable to parse AI response"],
+                "affected_merchants": 1,
+                "recommended_priority": ticket.get('severity', 'medium')
+            }
         
-        # Use fallback analysis when LLM fails
-        return self._fallback_analysis(ticket)
-    
-    def _fallback_analysis(self, ticket):
-        """Rule-based fallback when LLM is unavailable"""
-        error_log = ticket.get('error_log', '').lower()
-        severity = ticket.get('severity', 'medium')
-        
-        # Simple rule-based root cause detection
-        if 'webhook' in error_log or 'timeout' in error_log:
-            root_cause = "webhook_configuration"
-            explanation = "Error log indicates webhook or timeout issues, likely merchant configuration."
-            confidence = 75
-        elif 'migration' in error_log or 'legacy' in error_log:
-            root_cause = "migration_issue"
-            explanation = "Error log indicates migration-related problems."
-            confidence = 70
-        elif 'null' in error_log or 'undefined' in error_log or 'bug' in error_log:
-            root_cause = "platform_bug"
-            explanation = "Error log suggests potential platform bug or code issue."
-            confidence = 65
-        elif 'inventory' in error_log or 'sync' in error_log:
-            root_cause = "migration_issue"
-            explanation = "Inventory sync issues often occur during platform migration."
-            confidence = 70
-        elif 'shipping' in error_log or 'cart' in error_log:
-            root_cause = "webhook_configuration"
-            explanation = "Shipping/cart errors typically relate to webhook configuration."
-            confidence = 68
-        else:
-            root_cause = "documentation_gap"
-            explanation = "Unable to determine exact cause; may need better documentation."
-            confidence = 55
-        
-        return {
-            "root_cause": root_cause,
-            "root_cause_explanation": f"[Rule-based Analysis] {explanation}",
-            "is_pattern": False,
-            "pattern_details": "",
-            "confidence": confidence,
-            "assumptions": ["Using rule-based analysis (LLM unavailable or demo mode)"],
-            "affected_merchants": 1,
-            "recommended_priority": severity
-        }
+        return analysis
     
     def decide(self, ticket, analysis):
         """DECIDE: Determine action based on analysis"""
@@ -488,14 +440,7 @@ if __name__ == "__main__":
     print("SELF-HEALING SUPPORT AGENT")
     print("="*60)
     
-    # Set demo_mode=True to skip LLM (useful when rate limited)
-    # Set demo_mode=False to use actual Gemini API
-    DEMO_MODE = True
-    
-    if DEMO_MODE:
-        print("[DEMO MODE] Using rule-based analysis (no LLM calls)")
-    
-    agent = HealingAgent(demo_mode=DEMO_MODE)
+    agent = HealingAgent()
     results = agent.process_all_tickets()
     
     if results:
