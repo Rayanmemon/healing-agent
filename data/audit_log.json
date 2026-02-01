@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-02-01T06:29:06.942976",
+    "timestamp": "2026-02-01T07:40:56.231191",
     "ticket_id": "T002",
     "action": "escalate_to_engineering",
     "status": "pending_approval",
@@ -9,7 +9,7 @@
     "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
   },
   {
-    "timestamp": "2026-02-01T06:29:07.644904",
+    "timestamp": "2026-02-01T07:40:56.989009",
     "ticket_id": "T004",
     "action": "escalate_to_engineering",
     "status": "pending_approval",
@@ -18,7 +18,7 @@
     "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
   },
   {
-    "timestamp": "2026-02-01T06:29:08.303985",
+    "timestamp": "2026-02-01T07:40:57.681507",
     "ticket_id": "T005",
     "action": "assign_to_support_team",
     "status": "executed",
@@ -27,7 +27,7 @@
     "message": "\u2705 Automatically executed: assign_to_support_team"
   },
   {
-    "timestamp": "2026-02-01T06:29:09.067681",
+    "timestamp": "2026-02-01T07:40:58.327180",
     "ticket_id": "T001",
     "action": "send_webhook_configuration_guide",
     "status": "executed",
@@ -36,12 +36,165 @@
     "message": "\u2705 Automatically executed: send_webhook_configuration_guide"
   },
   {
-    "timestamp": "2026-02-01T06:29:09.675872",
+    "timestamp": "2026-02-01T07:40:59.089706",
     "ticket_id": "T003",
     "action": "escalate_to_engineering",
     "status": "pending_approval",
     "risk_level": "high",
     "triggered_by": "system",
     "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:41:01.965573",
+    "ticket_id": "T002",
+    "action": "escalate_to_engineering",
+    "status": "executed",
+    "risk_level": "high",
+    "triggered_by": "human",
+    "message": "\u2705 Human approved and executed: escalate_to_engineering"
+  },
+  {
+    "timestamp": "2026-02-01T07:44:17.555815",
+    "ticket_id": "T002",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:44:18.367503",
+    "ticket_id": "T004",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:44:19.001046",
+    "ticket_id": "T005",
+    "action": "assign_to_support_team",
+    "status": "executed",
+    "risk_level": "medium",
+    "triggered_by": "auto",
+    "message": "\u2705 Automatically executed: assign_to_support_team"
+  },
+  {
+    "timestamp": "2026-02-01T07:44:19.652655",
+    "ticket_id": "T001",
+    "action": "send_webhook_configuration_guide",
+    "status": "executed",
+    "risk_level": "low",
+    "triggered_by": "auto",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide"
+  },
+  {
+    "timestamp": "2026-02-01T07:44:20.411577",
+    "ticket_id": "T003",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:45:11.695733",
+    "ticket_id": "T002",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:45:12.535564",
+    "ticket_id": "T004",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:45:13.200205",
+    "ticket_id": "T005",
+    "action": "assign_to_support_team",
+    "status": "executed",
+    "risk_level": "medium",
+    "triggered_by": "auto",
+    "message": "\u2705 Automatically executed: assign_to_support_team"
+  },
+  {
+    "timestamp": "2026-02-01T07:45:13.947685",
+    "ticket_id": "T001",
+    "action": "send_webhook_configuration_guide",
+    "status": "executed",
+    "risk_level": "low",
+    "triggered_by": "auto",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide"
+  },
+  {
+    "timestamp": "2026-02-01T07:45:14.772576",
+    "ticket_id": "T003",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:46:02.077033",
+    "ticket_id": "TKT-35669",
+    "action": "assign_to_support_team",
+    "status": "executed",
+    "risk_level": "medium",
+    "triggered_by": "auto",
+    "message": "\u2705 Automatically executed: assign_to_support_team"
+  },
+  {
+    "timestamp": "2026-02-01T07:46:02.731879",
+    "ticket_id": "TKT-35670",
+    "action": "send_webhook_configuration_guide",
+    "status": "executed",
+    "risk_level": "low",
+    "triggered_by": "auto",
+    "message": "\u2705 Automatically executed: send_webhook_configuration_guide"
+  },
+  {
+    "timestamp": "2026-02-01T07:46:03.444407",
+    "ticket_id": "TKT-35672",
+    "action": "assign_to_support_team",
+    "status": "executed",
+    "risk_level": "medium",
+    "triggered_by": "auto",
+    "message": "\u2705 Automatically executed: assign_to_support_team"
+  },
+  {
+    "timestamp": "2026-02-01T07:46:04.241554",
+    "ticket_id": "TKT-35673",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:46:04.908655",
+    "ticket_id": "TKT-35671",
+    "action": "escalate_to_engineering",
+    "status": "pending_approval",
+    "risk_level": "high",
+    "triggered_by": "system",
+    "message": "\u23f3 Action 'escalate_to_engineering' requires human approval due to high risk"
+  },
+  {
+    "timestamp": "2026-02-01T07:46:11.664776",
+    "ticket_id": "TKT-35673",
+    "action": "escalate_to_engineering",
+    "status": "executed",
+    "risk_level": "high",
+    "triggered_by": "human",
+    "message": "\u2705 Human approved and executed: escalate_to_engineering"
   }
 ]

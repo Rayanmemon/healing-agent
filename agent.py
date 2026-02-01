@@ -13,7 +13,29 @@ class HealingAgent:
         self.client = Groq(api_key=os.getenv('GROQ_API_KEY'))
         self.model_name = 'llama-3.3-70b-versatile'  # Fast and capable
         self.tickets = []
-        self.decisions = []
+        self.decisions = self._load_decisions()  # Load from file for persistence
+        
+    def _get_decisions_path(self):
+        """Get path to decisions file"""
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(base_dir, "data", "decisions.json")
+    
+    def _load_decisions(self):
+        """Load decisions from JSON file"""
+        path = self._get_decisions_path()
+        if os.path.exists(path):
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except:
+                return []
+        return []
+    
+    def _save_decisions(self):
+        """Save decisions to JSON file for persistence"""
+        path = self._get_decisions_path()
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(self.decisions, f, indent=2, default=str)
         
     def load_tickets(self):
         base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -378,6 +400,7 @@ Respond ONLY with valid JSON (no markdown, no code blocks):
         # Update the stored decision status
         pending_decision['status'] = 'executed'
         pending_decision['action_details'] = action_details
+        self._save_decisions()  # Persist the status change
         
         return result
     
@@ -430,6 +453,7 @@ Respond ONLY with valid JSON (no markdown, no code blocks):
             })
             
             self.decisions.append(action_result)
+            self._save_decisions()  # Persist for HITL approval
             print(f"Done: {action_result['status']}")
         
         print(f"\nAgent processing complete!")

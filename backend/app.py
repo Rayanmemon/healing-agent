@@ -199,6 +199,42 @@ def approve_action():
             'error': str(e)
         }), 500
 
+@app.route('/api/reject', methods=['POST'])
+def reject_action():
+    """Reject a pending action and log to audit"""
+    try:
+        data = request.json
+        ticket_id = data.get('ticket_id')
+        reason = data.get('reason', 'Rejected by operator')
+        
+        if not ticket_id:
+            return jsonify({
+                'success': False,
+                'error': 'ticket_id is required'
+            }), 400
+        
+        # Log the rejection to audit
+        agent.log_audit_event({
+            'ticket_id': ticket_id,
+            'action': 'REJECTED',
+            'status': 'rejected',
+            'result': {'reason': reason},
+            'triggered_by': 'human'
+        })
+        
+        return jsonify({
+            'success': True,
+            'message': f'Action for {ticket_id} rejected',
+            'ticket_id': ticket_id,
+            'status': 'rejected'
+        })
+            
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
 @app.route('/api/audit-log', methods=['GET'])
 def get_audit_log():
     """Get the action audit log"""

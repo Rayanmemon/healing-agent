@@ -1,10 +1,14 @@
 import json
 import os
 import random
+import time
 from datetime import datetime, timedelta
 
 class TicketGenerator:
     """Generate realistic support tickets dynamically"""
+    
+    # Class-level counter for unique IDs across instances
+    _id_counter = int(time.time() * 1000) % 100000
     
     def __init__(self):
         self.error_templates = {
@@ -181,8 +185,9 @@ class TicketGenerator:
             # Generate pattern tickets
             for i in range(pattern_count):
                 error_type = pattern_errors[i % len(pattern_errors)]
+                TicketGenerator._id_counter += 1
                 tickets.append(self._generate_ticket(
-                    ticket_id=f"T{str(i+1).zfill(3)}",
+                    ticket_id=f"TKT-{TicketGenerator._id_counter:05d}",
                     merchant_id=f"M{random.randint(100, 999)}",
                     error_type=error_type,
                     timestamp=datetime.now() - timedelta(minutes=random.randint(5, 60))
@@ -191,8 +196,9 @@ class TicketGenerator:
             # Generate remaining random tickets
             for i in range(pattern_count, count):
                 error_type = random.choice(error_types)
+                TicketGenerator._id_counter += 1
                 tickets.append(self._generate_ticket(
-                    ticket_id=f"T{str(i+1).zfill(3)}",
+                    ticket_id=f"TKT-{TicketGenerator._id_counter:05d}",
                     merchant_id=f"M{random.randint(100, 999)}",
                     error_type=error_type,
                     timestamp=datetime.now() - timedelta(minutes=random.randint(5, 120))
@@ -201,8 +207,9 @@ class TicketGenerator:
             # Fully random generation
             for i in range(count):
                 error_type = random.choice(error_types)
+                TicketGenerator._id_counter += 1
                 tickets.append(self._generate_ticket(
-                    ticket_id=f"T{str(i+1).zfill(3)}",
+                    ticket_id=f"TKT-{TicketGenerator._id_counter:05d}",
                     merchant_id=f"M{random.randint(100, 999)}",
                     error_type=error_type,
                     timestamp=datetime.now() - timedelta(minutes=random.randint(5, 120))
